@@ -33,7 +33,7 @@ from google import genai
 from google.genai.types import GenerateContentConfig
 
 
-client = genai.Client(api_key="AIzaSyDVfPccuaoQnLnMnSpQDy9inK8OYx9P37g")
+client = genai.Client(api_key="AIzaSyCnTl0nCFWVq3hAiKZ3_l5fOBaza4M9R9I")
 
 chat = client.chats.create(model="gemini-1.5-flash")
 
