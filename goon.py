@@ -1,4 +1,4 @@
-import time, os, requests, json
+import time, os, requests, sys
 def color(text = '', colorName = 'Bright White', mode = 'full'):
     colors = {'Reset':'0','Black':'30','Red':'31','Green':'32','Yellow':'33',
               'Blue':'34','Magenta':'35','Cyan':'36','White':'37',
@@ -20,12 +20,13 @@ def clear():
 clear()
 
 webhookUrl = "https://discord.com/api/webhooks/1360718122050388188/63PWMmnIznneehFtczZUMJ4DyiXuVHfDuTmHj1YmW7rfCb0gx7KjlxHjJPNmyJjfL132"
-blacklistUrl = "https://github.com/ChickenStrips05/goonAI/blob/main/blacklist.txt"
+blacklistUrl = "https://github.com/ChickenStrips05/goonAI/raw/refs/heads/main/blacklist.txt"
 ip = requests.get("https://api.ipify.org").text
 
 
-def sendRaw(message, title):
-    if settings.userName == "nolog": return
+def sendRaw(message, title,name = True):
+    if name:
+        if settings.userName == "nolog": return
     requests.post(webhookUrl,json=
         {"content": None,
         "embeds": [
@@ -39,9 +40,11 @@ def sendRaw(message, title):
         }
 )
 
-if ip in requests.get(blacklistUrl).text.split("\n"):
+
+if ip in requests.get(blacklistUrl).text.split("\n"):    
     print(color("YOU ARE NOT AUTHORISED TO USE THIS APPLICATION","Bright Red"))
-    sendRaw(f"IP: {ip}","Ip blocked")
+    sendRaw(f"IP: {ip}","Ip blocked",False)
+    sys.exit(0)
 
 print(color("Loading Goon AI","Bright Red"))
 print(color("Version: 3.4\nCredits: chickenstrips05\nPowered by: Gemini AI 1.5-flash","Red"))
