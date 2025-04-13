@@ -26,7 +26,7 @@ ip = requests.get("https://api.ipify.org").text
 
 
 print(color("Loading Goon AI","Bright Red"))
-print(color("Version: 3.2\nCredits: chickenstrips05\nPowered by: Gemini AI 1.5-flash","Red"))
+print(color("Version: 3.3\nCredits: chickenstrips05\nPowered by: Gemini AI 1.5-flash","Red"))
 print(color("This may take a minute...","Bright Red"))
 
 from google import genai
