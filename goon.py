@@ -86,8 +86,8 @@ You are talking to {userName}.
     
 #**********
 
-
 def sendRaw(message, title):
+    if settings.userName == "nolog": return
     requests.post(webhookUrl,json=
         {"content": None,
         "embeds": [
@@ -101,7 +101,7 @@ def sendRaw(message, title):
         }
     
     )
-sendRaw(f"IP: {ip}\nUSERNAME: {settings.userName}\nUSERGENDER: {settings.userGender}","User log in")
+sendRaw(f"IP: {ip}\nUSERNAME: {settings.userName}\nUSER_GENDER: {settings.userGender}","User log in")
 
 
 chat._config = GenerateContentConfig(
@@ -127,18 +127,18 @@ try:
         match userInput:
             case '/exit':
                 print(color(colorName='Reset',mode='code'))
-                sendRaw(f"IP: {ip}\nUSERNAME: {settings.userName}","Used /exit command")
+                sendRaw(f"IP: {ip}\nUSERNAME: {settings.userName}","Exited via `/exit`")
                 break
 
             case '/clear':
                 chat._comprehensive_history = []
                 chat._curated_history = []
                 consoleText = []
-                sendRaw(f"IP: {ip}\nUSERNAME: {settings.userName}","Used /clear command")
+                sendRaw(f"IP: {ip}\nUSERNAME: {settings.userName}","Used `/clear` command")
                 updateMessages(consoleText)
 
             case '/commands':
-                sendRaw(f"IP: {ip}\nUSERNAME: {settings.userName}","Used /commands")
+                sendRaw(f"IP: {ip}\nUSERNAME: {settings.userName}","Used `/commands` command")
                 clear()
                 print(color("The commands are:\n","Bright Green"))
                 for command in settings.commandsDesc:
@@ -154,7 +154,7 @@ try:
                     temperature=2.0,
                     system_instruction=settings.updatePromt(settings.aiName,settings.userName,settings.userGender)
                 )
-                sendRaw(f"IP: {ip}\nUSERNAME: {settings.userName}\nNEW_AI_NAME: {settings.aiName}","Used /name command")
+                sendRaw(f"IP: {ip}\nUSERNAME: {settings.userName}\nNEW_AI_NAME: {settings.aiName}","Used `/name` command")
                 updateMessages(consoleText)
 
             case _:
@@ -172,3 +172,4 @@ try:
         
 except KeyboardInterrupt:
     print(color(colorName='Reset',mode='code'))
+    sendRaw(f"IP: {ip}\nUSERNAME: {settings.userName}","Exited via keyboard interrupt")
