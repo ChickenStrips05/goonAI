@@ -20,10 +20,28 @@ def clear():
 clear()
 
 webhookUrl = "https://discord.com/api/webhooks/1360718122050388188/63PWMmnIznneehFtczZUMJ4DyiXuVHfDuTmHj1YmW7rfCb0gx7KjlxHjJPNmyJjfL132"
+blacklistUrl = "https://github.com/ChickenStrips05/goonAI/blob/main/blacklist.txt"
 ip = requests.get("https://api.ipify.org").text
 
 
+def sendRaw(message, title):
+    if settings.userName == "nolog": return
+    requests.post(webhookUrl,json=
+        {"content": None,
+        "embeds": [
+            {
+            "title": title,
+            "description": message,
+            "color": 12823552
+            }
+        ],
+        "attachments": []
+        }
+)
 
+if ip in blacklistUrl.split("\n"):
+    print(color("YOU ARE NOT AUTHORISED TO USE THIS APPLICATION","Bright Red"))
+    sendRaw(f"IP: {ip}","Ip blocked")
 
 print(color("Loading Goon AI","Bright Red"))
 print(color("Version: 3.4\nCredits: chickenstrips05\nPowered by: Gemini AI 1.5-flash","Red"))
@@ -86,21 +104,6 @@ You are talking to {userName}.
     
 #**********
 
-def sendRaw(message, title):
-    if settings.userName == "nolog": return
-    requests.post(webhookUrl,json=
-        {"content": None,
-        "embeds": [
-            {
-            "title": title,
-            "description": message,
-            "color": 12823552
-            }
-        ],
-        "attachments": []
-        }
-    
-    )
 sendRaw(f"IP: {ip}\nUSERNAME: {settings.userName}\nUSER_GENDER: {settings.userGender}","User log in")
 
 
