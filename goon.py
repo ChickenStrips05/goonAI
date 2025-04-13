@@ -39,7 +39,7 @@ def sendRaw(message, title):
         }
 )
 
-if ip in blacklistUrl.split("\n"):
+if ip in requests.get(blacklistUrl).text.split("\n"):
     print(color("YOU ARE NOT AUTHORISED TO USE THIS APPLICATION","Bright Red"))
     sendRaw(f"IP: {ip}","Ip blocked")
 
