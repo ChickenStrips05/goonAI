@@ -44,10 +44,11 @@ def sendRaw(message, title,name = True):
 if ip in requests.get(blacklistUrl).text.split("\n"):    
     print(color("YOU ARE NOT AUTHORISED TO USE THIS APPLICATION","Bright Red"))
     sendRaw(f"IP: {ip}","Ip blocked",False)
+    time.sleep(5)
     sys.exit(0)
 
 print(color("Loading Goon AI","Bright Red"))
-print(color("Version: 3.4\nCredits: chickenstrips05\nPowered by: Gemini AI 1.5-flash","Red"))
+print(color("Version: 3.5\nCredits: chickenstrips05\nPowered by: Gemini AI 1.5-flash","Red"))
 print(color("This may take a minute...","Bright Red"))
 
 from google import genai
