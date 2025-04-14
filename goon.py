@@ -19,7 +19,7 @@ def clear():
 
 clear()
 
-webhookUrl = "https://discord.com/api/webhooks/1360718122050388188/63PWMmnIznneehFtczZUMJ4DyiXuVHfDuTmHj1YmW7rfCb0gx7KjlxHjJPNmyJjfL132"
+"
 blacklistUrl = "https://github.com/ChickenStrips05/goonAI/raw/refs/heads/main/blacklist.txt"
 ip = requests.get("https://api.ipify.org").text
 
@@ -55,7 +55,7 @@ from google import genai
 from google.genai.types import GenerateContentConfig
 
 
-client = genai.Client(api_key="AIzaSyCnTl0nCFWVq3hAiKZ3_l5fOBaza4M9R9I")
+client = genai.Client(api_key="AVq3hAiKZ3_l5fOBaza4M9R9I")
 
 chat = client.chats.create(model="gemini-1.5-flash")
 
